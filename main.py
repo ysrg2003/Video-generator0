@@ -51,7 +51,7 @@ async def run_pipeline(video_title):
     
     # تشغيل الرندر (تأكد أن ملف render_engine.py موجود)
     print("[+] Starting Render Engine...")
-    os.system("manim -pql -r 1080,1920 render_engine.py VideoRenderer")
+    os.system("manim -pqh -r 1080,1920 render_engine.py VideoRenderer")
     print("--- [FINISHED] ---")
 
 if __name__ == "__main__":
