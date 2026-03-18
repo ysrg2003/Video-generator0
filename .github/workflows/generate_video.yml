@@ -37,8 +37,13 @@ jobs:
         run: |
           python main.py "${{ github.event.inputs.video_title }}"
 
+      
       - name: Upload Video Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: final-video
-          path: media/videos/render_engine/1080p60/*.mp4
+          name: Professional-Video-Output
+          # هذا المسار سيبحث في كل المجلدات الفرعية ويجد الفيديو مهما كانت الدقة
+          path: media/**/*.mp4
+          retention-days: 7
+
+      
