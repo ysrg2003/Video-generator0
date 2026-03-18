@@ -7,6 +7,9 @@ on:
         required: true
         default: 'How Bluetooth Works'
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # حل تحذير Node.js 20
+  
 jobs:
   build:
     runs-on: ubuntu-latest
