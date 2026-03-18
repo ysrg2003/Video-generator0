@@ -35,7 +35,7 @@ jobs:
           python main.py "${{ github.event.inputs.video_title }}"
 
       - name: Upload Video Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: final-video
           path: media/videos/render_engine/1080p60/*.mp4
