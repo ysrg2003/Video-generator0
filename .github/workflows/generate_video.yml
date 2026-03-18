@@ -1,0 +1,41 @@
+name: Generate Pro Video
+on:
+  workflow_dispatch:
+    inputs:
+      video_title:
+        description: 'أدخل عنوان الفيديو هنا'
+        required: true
+        default: 'How Bluetooth Works'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libcairo2-dev libpango1.0-dev freeglut3-dev mesa-utils libpng-dev libjpeg-dev texlive texlive-latex-extra
+
+      - name: Install Python Libraries
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Video Generation
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python main.py "${{ github.event.inputs.video_title }}"
+
+      - name: Upload Video Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: final-video
+          path: media/videos/render_engine/1080p60/*.mp4
