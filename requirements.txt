@@ -1,5 +1,4 @@
-google-generativeai
+google-genai
 edge-tts
 manim
 faster-whisper
-
